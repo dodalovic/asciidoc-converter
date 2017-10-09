@@ -10,9 +10,9 @@ fun main(args: Array<String>) = adocFiles.forEach { create().convertFile(it, con
 
 private fun configOptions(): Options {
     val options = options()
-            .safe(SafeMode.SAFE)
+            .safe(SafeMode.UNSAFE)
             .backend(System.getProperty("backend") ?: "html")
-    System.getProperty("outputDir")?.let { options.baseDir(File(it)) }
+    System.getProperty("outputDir")?.let { options.mkDirs(true).toDir(File(it)) }
     return options.get()
 }
 
