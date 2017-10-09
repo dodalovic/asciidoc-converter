@@ -6,7 +6,7 @@ import org.asciidoctor.OptionsBuilder.options
 import org.asciidoctor.SafeMode
 import java.io.File
 
-fun main(args: Array<String>) = asciidocFiles().forEach { create().convertFile(it, configOptions()) }
+fun main(args: Array<String>) = adocFiles.forEach { create().convertFile(it, configOptions()) }
 
 private fun configOptions(): Options {
     val options = options()
@@ -16,4 +16,4 @@ private fun configOptions(): Options {
     return options.get()
 }
 
-private fun asciidocFiles() = System.getProperty("files").split(",").map { File(it) }
+private val adocFiles: List<File> = System.getProperty("files").split(",").map { File(it) }
