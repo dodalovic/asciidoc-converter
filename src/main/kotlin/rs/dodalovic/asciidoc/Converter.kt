@@ -6,7 +6,9 @@ import org.asciidoctor.OptionsBuilder.options
 import org.asciidoctor.SafeMode
 import java.io.File
 
-fun main(args: Array<String>) = adocFiles.forEach { create().convertFile(it, configOptions()) }
+fun main(args: Array<String>) = adocFiles.forEach {
+    create().convertFile(it, configOptions())
+}
 
 private fun configOptions(): Options {
     val optionsBuilder = options()
