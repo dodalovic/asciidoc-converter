@@ -1,0 +1,37 @@
+= Asciidoc converter
+:icons: font
+
+IMPORTANT: Tested with _Maven 3.5.0, JDK 8, Kotlin 1.1.51_
+
+== Backend
+
+You can specify _backend_ by passing `backend` _java system property_
+
+== Generated files output directory
+
+IMPORTANT: If `outputDir` java system property not defined, output files will
+be generated next to input asciidoc files
+
+== Modes
+
+IMPORTANT: Application will fallback to _FILES_ mode if no other valid mode specified
+
+* FILES
++
+[source,bash]
+java [-Dmode=FILES] [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
+
+* DIRECTORIES
++
+[source,bash]
+java -Dmode=DIRECTORIES [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
+
+== Packaging app
+
+[source,bash]
+mvn clean package
+
+== Running app
+
+[source,bash]
+java -Dmode=DIR -Ddirs=/Users/dusan.odalovic/Desktop -DoutputDir=/Users/dusan.odalovic/Desktop/asciidoc-output-dir -jar asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
