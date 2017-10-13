@@ -8,6 +8,7 @@ endif::[]
 
 = Asciidoc converter
 :icons: font
+:jar-name: asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 IMPORTANT: Tested with _Maven 3.5.0, JDK 8, Kotlin 1.1.51_
 
@@ -26,13 +27,16 @@ IMPORTANT: Application will fallback to _FILES_ mode if no other valid mode spec
 
 * FILES
 +
-[source,bash]
-java [-Dmode=FILES] -Dfiles=FULL_FILE_PATH1[,FULL_FILE_PATH2,FULL_FILE_PATH3...] [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
+[source,bash,subs=normal]
+java [-Dmode=FILES] \
+    -Dfiles=FULL_FILE_PATH1[,FULL_FILE_PATH2,FULL_FILE_PATH3...] \
+    [-DoutputDir=YOUR_DIR_HERE] \
+    -jar {jar-name}
 
 * DIRECTORIES
 +
-[source,bash]
-java -Dmode=DIRECTORIES [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
+[source,bash,subs=normal]
+java -Dmode=DIRECTORIES [-DoutputDir=YOUR_DIR_HERE] -jar {jar-name}
 
 == Packaging app
 
@@ -41,7 +45,7 @@ mvn clean package
 
 == Running app
 
-[source,bash]
+[source,bash,subs=normal]
 java -Dmode=DIR -Ddirs=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
     -DoutputDir=FULL_PATH_OF_DIR_CONTAINING_GENERATED_OUTPUT \
-    -jar asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
+    -jar {jar-name}
