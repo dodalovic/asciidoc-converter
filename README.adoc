@@ -12,20 +12,28 @@ endif::[]
 
 IMPORTANT: Tested with _Maven 3.5.0, JDK 8, Kotlin 1.1.51_
 
+== Packaging app
+
+[source,bash]
+----
+mvn clean package#<1>
+----
+<1> This will generate {jar-name} in `target` dir
+
 == Backend
 
-You can specify _backend_ by passing `backend` _java system property_
+You can specify _backend_ by passing `backend` _java system property_ when running the application
 
 == Generated files output directory
 
-IMPORTANT: If `outputDir` java system property not defined, output files will
+If `outputDir` java system property not defined, output files will
 be generated next to input asciidoc files
 
-== Modes
+== Running the app in different modes
 
-IMPORTANT: Application will fallback to _FILES_ mode if no other valid mode specified
+Application will fallback to _FILES_ mode if no other valid mode specified
 
-* FILES
+* FILES mode
 +
 [source,bash,subs=normal]
 java [-Dmode=FILES] \
@@ -33,19 +41,10 @@ java [-Dmode=FILES] \
     [-DoutputDir=YOUR_DIR_HERE] \
     -jar {jar-name}
 
-* DIRECTORIES
+* DIRECTORIES mode
 +
-[source,bash,subs=normal]
-java -Dmode=DIRECTORIES [-DoutputDir=YOUR_DIR_HERE] -jar {jar-name}
-
-== Packaging app
-
-[source,bash]
-mvn clean package
-
-== Running app
-
 [source,bash,subs=normal]
 java -Dmode=DIR -Ddirs=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
     -DoutputDir=FULL_PATH_OF_DIR_CONTAINING_GENERATED_OUTPUT \
     -jar {jar-name}
+
