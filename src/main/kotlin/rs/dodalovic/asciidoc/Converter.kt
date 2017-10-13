@@ -5,10 +5,12 @@ import org.asciidoctor.Asciidoctor.Factory.create
 import org.asciidoctor.Options
 import org.asciidoctor.OptionsBuilder.options
 import org.asciidoctor.SafeMode
+import rs.dodalovic.asciidoc.ProcessorFactory.ApplicationMode.DIR
+import rs.dodalovic.asciidoc.ProcessorFactory.ApplicationMode.FILE
 import java.io.File
 
 fun main(args: Array<String>) {
-    RequestProcessorFactory.getProcessor().process()
+    ProcessorFactory.getProcessor().process()
 }
 
 private fun configOptions(): Options {
@@ -20,18 +22,29 @@ private fun configOptions(): Options {
     return optionsBuilder.get()
 }
 
-object RequestProcessorFactory {
+object ProcessorFactory {
     enum class ApplicationMode {
         FILE, DIR
     }
 
     private val mode = detectMode()
 
-    fun getProcessor(): RequestProcessor {
+    fun getProcessor(): Processor {
         return when (mode) {
-            ApplicationMode.FILE -> FileProcessor()
-            ApplicationMode.DIR -> DirProcessor()
-            else -> FileProcessor()
+            FILE -> object : Processor {
+                override fun process() {
+                    val adocFiles = System.getProperty("files").split(",").map { File(it) }
+                    adocFiles.forEach {
+                        create().convertFile(it, configOptions())
+                    }
+                }
+            }
+            DIR -> object : Processor {
+                override fun process() {
+                    System.getProperty("dirs").split(",")
+                            .forEach { create().convertDirectory(AsciiDocDirectoryWalker(it), configOptions()) }
+                }
+            }
         }
     }
 
@@ -39,27 +52,11 @@ object RequestProcessorFactory {
         return try {
             ApplicationMode.valueOf(System.getProperty("mode"))
         } catch (ex: IllegalArgumentException) {
-            return ApplicationMode.FILE
+            return FILE
         }
     }
 }
 
-interface RequestProcessor {
+interface Processor {
     fun process()
-}
-
-class FileProcessor : RequestProcessor {
-    override fun process() {
-        val adocFiles = System.getProperty("files").split(",").map { File(it) }
-        adocFiles.forEach {
-            create().convertFile(it, configOptions())
-        }
-    }
-}
-
-class DirProcessor : RequestProcessor {
-    override fun process() {
-        System.getProperty("dirs").split(",")
-                .forEach { create().convertDirectory(AsciiDocDirectoryWalker(it), configOptions()) }
-    }
 }
