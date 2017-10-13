@@ -30,9 +30,9 @@ be generated next to input asciidoc files
 
 == Running the app in different modes
 
-Application will fallback to _FILES_ mode if no other valid mode specified
+Application will fallback to *FILES* mode if no other valid mode specified
 
-* FILES mode
+* *FILES* mode
 +
 [source,bash,subs=normal]
 java [-Dmode=FILES] \
@@ -40,7 +40,7 @@ java [-Dmode=FILES] \
     [-DoutputDir=YOUR_DIR_HERE] \
     -jar {jar-name}
 
-* DIRECTORIES mode
+* *DIRECTORIES* mode
 +
 [source,bash,subs=normal]
 java -Dmode=DIR -Ddirs=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
