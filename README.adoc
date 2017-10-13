@@ -34,4 +34,6 @@ mvn clean package
 == Running app
 
 [source,bash]
-java -Dmode=DIR -Ddirs=/Users/dusan.odalovic/Desktop -DoutputDir=/Users/dusan.odalovic/Desktop/asciidoc-output-dir -jar asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -Dmode=DIR -Ddirs=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
+    -DoutputDir=FULL_PATH_OF_DIR_CONTAINING_GENERATED_OUTPUT \
+    -jar asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
