@@ -8,7 +8,7 @@ endif::[]
 
 = Asciidoc converter
 :icons: font
-:jar-name: asciidoc-converter-1.0-SNAPSHOT-jar-with-dependencies.jar
+:jar-name: converter-1.0.jar-jar-with-dependencies.jar
 
 IMPORTANT: Tested with _Maven 3.5.0, JDK 8, Kotlin 1.1.51_
 
