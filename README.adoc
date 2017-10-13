@@ -15,10 +15,9 @@ IMPORTANT: Tested with _Maven 3.5.0, JDK 8, Kotlin 1.1.51_
 == Packaging app
 
 [source,bash]
-----
-mvn clean package#<1>
-----
-<1> This will generate {jar-name} in `target` dir
+mvn clean package
+
+This will generate `{jar-name}` in `target` dir
 
 == Backend
 
