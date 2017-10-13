@@ -27,7 +27,7 @@ IMPORTANT: Application will fallback to _FILES_ mode if no other valid mode spec
 * FILES
 +
 [source,bash]
-java [-Dmode=FILES] [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
+java [-Dmode=FILES] -Dfiles=FULL_FILE_PATH1[,FULL_FILE_PATH2,FULL_FILE_PATH3...] [-DoutputDir=YOUR_DIR_HERE] -jar app.jar
 
 * DIRECTORIES
 +
