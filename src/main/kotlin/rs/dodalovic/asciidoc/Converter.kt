@@ -13,14 +13,17 @@ fun main(args: Array<String>) {
     ProcessorFactory.getProcessor().process()
 }
 
-private fun configOptions(): Options {
-    val optionsBuilder = options()
-            .safe(SafeMode.UNSAFE)
-            .mkDirs(true)
-            .backend(System.getProperty("backend") ?: "html")
-    System.getProperty("outputDir")?.let { optionsBuilder.toDir(File(it)) }
-    return optionsBuilder.get()
-}
+private val configOptions: Options
+    get() {
+        val optionsBuilder = options()
+                .safe(SafeMode.UNSAFE)
+                .mkDirs(true)
+                .backend(System.getProperty("backend") ?: "html")
+        System.getProperty("outputDir")?.let { optionsBuilder.toDir(File(it)) }
+        return optionsBuilder.get()
+    }
+
+private val input = System.getProperty("input").split(",")
 
 object ProcessorFactory {
     enum class ApplicationMode {
@@ -33,14 +36,13 @@ object ProcessorFactory {
         return when (mode) {
             FILE -> object : Processor {
                 override fun process() {
-                    val adocFiles = System.getProperty("files").split(",").map { File(it) }
-                    adocFiles.forEach { create().convertFile(it, configOptions()) }
+                    val adocFiles = input.map { File(it) }
+                    adocFiles.forEach { create().convertFile(it, configOptions) }
                 }
             }
             DIR -> object : Processor {
                 override fun process() {
-                    System.getProperty("dirs").split(",")
-                            .forEach { create().convertDirectory(AsciiDocDirectoryWalker(it), configOptions()) }
+                    input.forEach { create().convertDirectory(AsciiDocDirectoryWalker(it), configOptions) }
                 }
             }
         }

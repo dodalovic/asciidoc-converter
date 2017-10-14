@@ -30,20 +30,20 @@ be generated next to input asciidoc files
 
 == Running the app in different modes
 
-Application will fallback to *FILES* mode if no other valid mode specified
+Application will fallback to *FILE* mode if no other valid mode specified
 
-* *FILES* mode
+* *FILE* mode
 +
 [source,bash,subs=normal]
-java [-Dmode=FILES] \
-    -Dfiles=FULL_FILE_PATH1[,FULL_FILE_PATH2,FULL_FILE_PATH3...] \
+java [-Dmode=FILE] \
+    -Dinput=FULL_FILE_PATH1[,FULL_FILE_PATH2,FULL_FILE_PATH3...] \
     [-DoutputDir=YOUR_DIR_HERE] \
     -jar {jar-name}
 
-* *DIRECTORIES* mode
+* *DIR* mode
 +
 [source,bash,subs=normal]
-java -Dmode=DIR -Ddirs=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
+java -Dmode=DIR -Dinput=FULL_PATH_OF_DIR_CONTAINING_ADOC_FILES \
     -DoutputDir=FULL_PATH_OF_DIR_CONTAINING_GENERATED_OUTPUT \
     -jar {jar-name}
 
