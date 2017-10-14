@@ -34,9 +34,7 @@ object ProcessorFactory {
             FILE -> object : Processor {
                 override fun process() {
                     val adocFiles = System.getProperty("files").split(",").map { File(it) }
-                    adocFiles.forEach {
-                        create().convertFile(it, configOptions())
-                    }
+                    adocFiles.forEach { create().convertFile(it, configOptions()) }
                 }
             }
             DIR -> object : Processor {
