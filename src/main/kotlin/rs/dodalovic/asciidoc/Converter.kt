@@ -26,9 +26,7 @@ private val configOptions: Options
 private val input = System.getProperty("input").split(",")
 
 object ProcessorFactory {
-    enum class ApplicationMode {
-        FILE, DIR
-    }
+    enum class ApplicationMode { FILE, DIR }
 
     private val mode = detectMode()
 
